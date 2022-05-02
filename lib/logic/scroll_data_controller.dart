@@ -11,12 +11,14 @@ class ScrollDataController extends GetxController {
 
   final scrollController = ScrollController().obs;
 
-  // static ScrollDirection direction = ScrollDirection.Backward;
-  final direction = ScrollDirection.reverse.obs;
+  final direction = AxisDirection.up.obs;
 
   final position = 0.0.obs;
 
   static const _extraScrollSpeed = 60; // your "extra" scroll speed
+
+  final show = true.obs;
+  final lastScrollPosition = 0.0.obs;
 
   @override
   void onInit() {
@@ -46,7 +48,22 @@ class ScrollDataController extends GetxController {
       if (!isMobile) {
         _increaseSpeed(scrollDirection);
       }
-      direction.value = scrollDirection;
     }
+  }
+
+  void onScrollNotification(ScrollNotification snk) {
+    final currentDirection = snk.metrics.axisDirection;
+    final currentPosition = snk.metrics.pixels;
+
+    if (currentPosition == 0) show.value = true;
+
+    if (currentPosition > lastScrollPosition.value) {
+      show.value = false;
+    } else if (currentPosition < lastScrollPosition.value) {
+      show.value = true;
+    }
+
+    lastScrollPosition.value = currentPosition;
+    direction.value = currentDirection;
   }
 }

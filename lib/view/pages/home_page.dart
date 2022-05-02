@@ -2,21 +2,19 @@ import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:reikodev_website/constants.dart';
 import 'package:reikodev_website/logic/design_controller.dart';
 import 'package:reikodev_website/logic/menu_controller.dart';
-import 'package:reikodev_website/logic/animated_state.dart';
 import 'package:reikodev_website/logic/scroll_data_controller.dart';
-import 'package:reikodev_website/view/components/background_animator.dart';
-import 'package:reikodev_website/view/components/custom_link_widget.dart';
+import 'package:reikodev_website/view/components/star_field/background_animator.dart';
 import 'package:reikodev_website/view/components/footer_section.dart';
 import 'package:reikodev_website/view/components/goodbye_section.dart';
-import 'package:reikodev_website/view/components/hover_bottom_animation.dart';
-import 'package:reikodev_website/view/components/inner_shadow.dart';
-import 'package:reikodev_website/view/components/on_hover_animated.dart';
-import 'package:reikodev_website/view/components/scroll_to_discover.dart';
+import 'package:reikodev_website/view/components/shared/hover_bottom_animation.dart';
+import 'package:reikodev_website/view/components/shared/on_hover_animated.dart';
+import 'package:reikodev_website/view/components/shared/opaque_on_hover.dart';
+import 'package:reikodev_website/view/components/shared/scroll_to_discover.dart';
+import 'package:reikodev_website/view/components/header.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/";
@@ -72,23 +70,24 @@ class _SectionsListState extends State<SectionsList> {
     DesignController.i.loadDesignType(MediaQuery.of(context).size);
   }
 
-  bool _handleScrollNotification(ScrollNotification notification) {
-    _scrollVel = notification.metrics.pixels - _prevScrollPos;
-    _prevScrollPos = notification.metrics.pixels;
+  bool _handleScrollNotification(ScrollNotification snk) {
+    ScrollDataController.i.onScrollNotification(snk);
 
-    if (notification.metrics.atEdge) {
+    _scrollVel = snk.metrics.pixels - _prevScrollPos;
+    _prevScrollPos = snk.metrics.pixels;
+
+    if (snk.metrics.atEdge) {
       widget.bgAnimatorGKey.currentState!.handleListScroll(0.5);
-      return true;
+      return false;
     }
 
     if (_scrollVel == 0) {
       stopAnimationWhenEndedToScroll();
-      return true;
+    } else {
+      widget.bgAnimatorGKey.currentState!.handleListScroll(_scrollVel);
     }
 
-    widget.bgAnimatorGKey.currentState!.handleListScroll(_scrollVel);
-
-    return true;
+    return false;
   }
 
   ///Necessary when using MOUSE for scrolling purposes.
@@ -344,164 +343,6 @@ class MenuPage extends StatelessWidget {
   }
 }
 
-class Header extends StatefulWidget {
-  const Header({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<Header> createState() => _HeaderState();
-}
-
-class _HeaderState extends State<Header> {
-  bool hide = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (ScrollDataController.i.direction.value != ScrollDirection.reverse ||
-        ScrollDataController.i.position.value == 0) {
-      hide = false;
-    } else {
-      hide = true;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return hide
-        ? const SizedBox.shrink()
-        : Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              color: Colors.black45,
-              height: size.height * .13 > 83 ? 83 : size.height * .13,
-              width: size.width,
-              child: Padding(
-                padding: padding.copyWith(top: 0, bottom: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Obx(() {
-                      return Text(
-                        DesignController.i.type.value == DesignType.mobile
-                            ? "REIKO"
-                            : "Code By REIKO",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline2!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      );
-                    }),
-                    size.width <= 720
-                        ? const HamburgerMenu()
-                        : DefaultTextStyle(
-                            style: Theme.of(context).textTheme.headline5!,
-                            child: SizedBox(
-                              width: 260,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  CustomLinkWidget.path(
-                                    path: "work",
-                                    child: HoverBottomAnimation(
-                                      text: "Work",
-                                    ),
-                                  ),
-                                  CustomLinkWidget.path(
-                                    path: "about",
-                                    child: HoverBottomAnimation(
-                                      text: "About",
-                                    ),
-                                  ),
-                                  CustomLinkWidget.path(
-                                    path: "contact",
-                                    child: HoverBottomAnimation(
-                                      text: "Contact",
-                                    ),
-                                  ),
-                                  // ThemeSwitcher(),
-                                ],
-                              ),
-                            ),
-                          )
-                  ],
-                ),
-              ),
-            ),
-          );
-  }
-}
-
-class HamburgerMenu extends StatefulWidget {
-  const HamburgerMenu({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  createState() => _HamburgerMenuState();
-}
-
-class _HamburgerMenuState extends AnimatedState {
-  @override
-  void initState() {
-    super.initState();
-    init(
-      duration: const Duration(milliseconds: 700),
-      reverseDuration: const Duration(milliseconds: 400),
-    );
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (MenuController.i.isOpen.value) {
-      controller.value = 1;
-    } else {
-      controller.value = 0;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: const Size.square(48),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: () async {
-            if (MenuController.i.isOpen.value) {
-              MenuController.i.isOpen.value = false;
-              controller.reverse();
-            } else {
-              MenuController.i.isOpen.value = true;
-              await controller.forward();
-            }
-          },
-          child: DecoratedBox(
-            decoration: const BoxDecoration(
-              // color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: AnimatedIcon(
-                icon: AnimatedIcons.menu_close,
-                size: 28,
-                color: Colors.white,
-                progress: controller,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class HomeSection extends StatelessWidget {
   const HomeSection({Key? key}) : super(key: key);
 
@@ -565,65 +406,6 @@ class HomeSection extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class OpaqueOnHover extends StatefulWidget {
-  const OpaqueOnHover({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<OpaqueOnHover> createState() => _OpaqueOnHoverState();
-}
-
-class _OpaqueOnHoverState extends AnimatedState<OpaqueOnHover> {
-  late final Animation<double> fadeAnimation;
-  @override
-  void initState() {
-    super.initState();
-    init(
-      duration: const Duration(milliseconds: 400),
-      reverseDuration: const Duration(milliseconds: 300),
-    );
-
-    fadeAnimation = Tween<double>(begin: .92, end: 1.0).animate(
-      CurvedAnimation(parent: controller, curve: const Interval(0, 1)),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onEnter: (_) {
-        controller.forward(from: 0);
-      },
-      onExit: (_) {
-        controller.reverse(from: 1);
-      },
-      child: InnerShadow(
-        shadows: [
-          BoxShadow(
-            blurRadius: 120,
-            spreadRadius: 10,
-            color: Theme.of(context).backgroundColor,
-          )
-        ],
-        child: AnimatedBuilder(
-            animation: controller,
-            builder: (context, c) {
-              return Image.asset(
-                "assets/images/profile2.jpg",
-                colorBlendMode: BlendMode.color,
-                opacity: fadeAnimation,
-                color: Theme.of(context)
-                    .backgroundColor
-                    .withOpacity(.6 - (.6 * fadeAnimation.value)),
-              );
-            }),
       ),
     );
   }

@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:reikodev_website/internationalization.dart';
 import 'package:reikodev_website/logic/design_controller.dart';
 import 'package:reikodev_website/logic/navigation_controller.dart';
-import 'package:reikodev_website/view/components/custom_link_widget.dart';
-import 'package:reikodev_website/view/components/custom_selectable_text.dart';
-import 'package:reikodev_website/view/components/hover_bottom_animation.dart';
-import 'package:reikodev_website/view/components/on_hover_icon.dart';
+import 'package:reikodev_website/view/components/shared/custom_link_widget.dart';
+import 'package:reikodev_website/view/components/shared/custom_selectable_text.dart';
+import 'package:reikodev_website/view/components/shared/hover_bottom_animation.dart';
+import 'package:reikodev_website/view/components/shared/on_hover_icon.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({Key? key}) : super(key: key);

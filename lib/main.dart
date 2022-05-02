@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:reikodev_website/constants.dart';
 
-import 'package:reikodev_website/view/about_page.dart';
-import 'package:reikodev_website/view/components/shared/custom_theme_data.dart';
-import 'package:reikodev_website/view/home_screen.dart';
 import 'package:url_strategy/url_strategy.dart';
+
+import 'package:reikodev_website/view/pages/about_page.dart';
+import 'package:reikodev_website/view/pages/home_page.dart';
 
 void main() {
   // Here we set the URL strategy for our web app.

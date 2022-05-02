@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reikodev_website/view/components/custom_link_widget.dart';
+import 'package:reikodev_website/view/components/shared/custom_link_widget.dart';
 
 class OnHoverIcon extends StatefulWidget {
   const OnHoverIcon({

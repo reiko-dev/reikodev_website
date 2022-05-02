@@ -3,8 +3,8 @@ import 'package:reikodev_website/internationalization.dart';
 import 'package:reikodev_website/logic/animated_state.dart';
 import 'package:reikodev_website/logic/extensions.dart';
 import 'package:reikodev_website/logic/scroll_data_controller.dart';
-import 'package:reikodev_website/view/components/animated_arrow.dart';
-import 'package:reikodev_website/view/components/hover_bottom_animation.dart';
+import 'package:reikodev_website/view/components/shared/animated_arrow.dart';
+import 'package:reikodev_website/view/components/shared/hover_bottom_animation.dart';
 
 class ScrollToDiscoverWidget extends StatefulWidget {
   const ScrollToDiscoverWidget({
