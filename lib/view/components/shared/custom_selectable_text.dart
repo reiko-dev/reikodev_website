@@ -1,13 +1,12 @@
 import 'dart:async';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:reikodev_website/logic/action_intent.dart';
+import 'package:reikodev_website/view/mouse_click_preventer/mouse_click_preventer_io_impl.dart'
+    if (dart.library.html) 'package:reikodev_website/view/mouse_click_preventer/mouse_click_preventer_web_impl.dart';
 
 class CustomSelectableText extends StatefulWidget {
   const CustomSelectableText(
@@ -41,7 +40,7 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
   late int _selectionBaseOffset;
 
   TextSelection _textSelection = const TextSelection.collapsed(offset: -1);
-  late final StreamSubscription<MouseEvent> mouseStream;
+  StreamSubscription<dynamic>? mouseStream;
 
   late Map<LogicalKeySet, Intent> _shortcutMap;
   late Map<Type, Action<Intent>> _actionMap;
@@ -53,13 +52,9 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
       _updateAllTextRects();
     });
 
-    if (kIsWeb) {
-      mouseStream = document.onContextMenu.listen((event) {
-        if (_isShowingCopyMenu) {
-          event.preventDefault();
-        }
-      });
-    }
+    mouseStream = MouseClickPreventer().listen(
+      () => _isShowingCopyMenu,
+    );
 
     focusNode.addListener(() {
       if (!focusNode.hasFocus && !_isShowingCopyMenu) {
@@ -100,7 +95,7 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
 
   @override
   dispose() {
-    mouseStream.cancel();
+    mouseStream?.cancel();
     super.dispose();
   }
 
@@ -216,7 +211,14 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
     final selectionRect = _selectionRects
         .reduce((value, element) => value.expandToInclude(element));
 
-    if (!selectionRect.contains(e.localPosition)) return;
+    if (!selectionRect.contains(e.localPosition)) {
+      return;
+    }
+
+    if (e.buttons != kSecondaryButton) {
+      _updateAllTextRects();
+      return;
+    }
 
     final render = _renderParagraph;
     if (render == null) return;
