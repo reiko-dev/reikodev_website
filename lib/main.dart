@@ -1,24 +1,36 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:reikodev_website/constants.dart';
-
-import 'package:url_strategy/url_strategy.dart';
-
-import 'package:reikodev_website/view/pages/about_page.dart';
-import 'package:reikodev_website/view/pages/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:reikodev_website/app/controller/projects_controller.dart';
+import 'package:reikodev_website/app/data/repository/projects_repository_web_impl.dart';
+import 'package:reikodev_website/app/routes/app_router.dart';
+import 'package:reikodev_website/app/ui/pages/background/background_page.dart';
+import 'package:reikodev_website/app/ui/theme.dart';
+import 'package:reikodev_website/app/ui/utils/menu_controller.dart';
+import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
-  // Here we set the URL strategy for our web app.
-  // It is safe to call this function when running on mobile or desktop as well.
-  if (kIsWeb) {
-    setPathUrlStrategy();
-  }
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+final isDarkThemeNotifier = ValueNotifier<bool>(true);
+
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final a = Get.put(MenuController());
+  final c = Get.put(ScrollDataController());
+
+  final hc = Get.lazyPut(
+    () => ProjectsController(ProjectsRepositoryWebImpl()),
+  );
 
   void updateUiBars() {
     SystemChrome.setEnabledSystemUIMode(
@@ -34,17 +46,40 @@ class MyApp extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    VisibilityDetectorController.instance.updateInterval =
+        const Duration(milliseconds: 35);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     updateUiBars();
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: customThemeData,
-      home: const HomePage(),
-      routes: {
-        AboutPage.routeName: (_) => const AboutPage(),
-      },
-    );
+    return ValueListenableBuilder<bool>(
+        valueListenable: isDarkThemeNotifier,
+        builder: (context, isDarkTheme, _) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routeInformationParser: router.routeInformationParser,
+            routerDelegate: router.routerDelegate,
+            theme: isDarkTheme ? darkTheme : lightTheme,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            builder: (context, child) => BGAnimator(
+              child: Scaffold(
+                backgroundColor: Colors.black,
+                body: child!,
+              ),
+            ),
+            supportedLocales: const [
+              Locale('en', 'Us'),
+              Locale('pt', ''),
+            ],
+          );
+        });
   }
 }
