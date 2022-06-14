@@ -2,6 +2,8 @@
 This is the repository for my <a href="https://reikodev.com/">Website portfolio</a>.
 Made with Flutter :blue_heart:
 
+_The constellation animation, on the background, is an adaptation from the [constellation vignette](https://github.com/gskinnerTeam/flutter_vignettes/tree/master/vignettes/constellations_list) showcase made by the [gskinner team](https://github.com/gskinnerTeam)._
+
 ## Pictures
 
 #### Home Page

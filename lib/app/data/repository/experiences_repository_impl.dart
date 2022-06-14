@@ -5,7 +5,7 @@ import 'package:reikodev_website/app/controller/data/experience_repository.dart'
 import 'package:reikodev_website/app/controller/entities/experience.dart';
 
 class ExperiencesRepositoryImpl extends ExperienceRepository {
-  //
+  static const String basePath = "assets/images/experiences/";
 
   @override
   Future<bool> delete(String experienceId) async {
@@ -23,7 +23,7 @@ class ExperiencesRepositoryImpl extends ExperienceRepository {
       const Experience(
         id: "0",
         city: "Rio Branco, Brazil",
-        imageURL: "child.jpg",
+        imageURL: "${basePath}child.jpg",
         context:
             "Born in Rio Branco - Acre, Brazil, 5 months before the Brazilian soccer "
             "team won the 4th Mundial Championship in the USA.",
@@ -32,14 +32,14 @@ class ExperiencesRepositoryImpl extends ExperienceRepository {
       const Experience(
         id: "1",
         city: "Barretos, Brazil",
-        imageURL: "firstcomputer.jpg",
+        imageURL: "${basePath}firstcomputer.jpg",
         context: "My parents bought our first computer",
         date: "Apr. 2007",
       ),
       const Experience(
         id: "2",
         city: "Rio Branco, Brazil",
-        imageURL: "ufac.jpg",
+        imageURL: "${basePath}ufac.jpg",
         context: "Graduted from the Federal University of Acre with a "
             "Bachelor's degree in Information Systems.",
         date: "Apr. 2017",
@@ -51,7 +51,7 @@ class ExperiencesRepositoryImpl extends ExperienceRepository {
       const Experience(
         id: "3",
         city: "Plácido de Castro, Brazil",
-        imageURL: "teacher.jpg",
+        imageURL: "${basePath}teacher.jpg",
         context: "A Dom Moacir professor of the Systems Development Course",
         date: "Aug-Dec. 2018",
         moreInfo:
@@ -61,7 +61,7 @@ class ExperiencesRepositoryImpl extends ExperienceRepository {
       const Experience(
         id: "4",
         city: "Sorocaba, Brazil",
-        imageURL: "memory_game.png",
+        imageURL: "${basePath}memorygame.jpg",
         context:
             "Launched the Memory Game by Reiko on the play store, using Flutter and Firebase",
         date: "Apr. 2022",

@@ -8,8 +8,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'package:reikodev_website/app/controller/entities/experience.dart';
 import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
-const String experienceAssetsBasePath = "assets/images/experiences/";
-
 class TimeLineItem extends StatefulWidget {
   const TimeLineItem({super.key, required this.experience});
 
@@ -129,12 +127,17 @@ class _TimeLineItemState extends AnimatedState<TimeLineItem> {
                       Center(
                         child: SizedBox(
                           width: size.width * .8,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              experienceAssetsBasePath +
+                          child: Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: AspectRatio(
+                                aspectRatio: 3 / 2,
+                                child: Image.asset(
                                   widget.experience.imageURL,
-                              fit: BoxFit.fitWidth,
+                                  filterQuality: FilterQuality.high,
+                                  isAntiAlias: true,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -190,9 +193,10 @@ class _TimeLineItemState extends AnimatedState<TimeLineItem> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              experienceAssetsBasePath +
-                                  widget.experience.imageURL,
-                              fit: BoxFit.fitWidth,
+                              widget.experience.imageURL,
+                              filterQuality: FilterQuality.high,
+                              fit: BoxFit.cover,
+                              isAntiAlias: true,
                             ),
                           ),
                         ),

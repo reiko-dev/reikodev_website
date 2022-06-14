@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:reikodev_website/app/controller/projects_controller.dart';
-import 'package:reikodev_website/app/data/repository/projects_repository_web_impl.dart';
+import 'package:reikodev_website/app/data/repository/projects_repository_impl.dart';
 import 'package:reikodev_website/app/routes/app_router.dart';
 import 'package:reikodev_website/app/ui/pages/background/background_page.dart';
 import 'package:reikodev_website/app/ui/theme.dart';
@@ -83,3 +83,31 @@ class _MyAppState extends State<MyApp> {
         });
   }
 }
+
+// class Test extends StatelessWidget {
+//   const Test({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+
+//     return Scaffold(
+//       body: SizedBox(
+//         width: size.width * .9,
+//         height: size.height * .9,
+//         child: Center(
+//           child: AspectRatio(
+//             aspectRatio: 3 / 2,
+//             child: LayoutBuilder(builder: (context, bc) {
+//               print(bc);
+//               return Image.asset(
+//                 'assets/images/experiences/3.0x/ufac.jpg',
+//                 filterQuality: FilterQuality.medium,
+//               );
+//             }),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

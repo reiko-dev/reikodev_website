@@ -41,15 +41,12 @@ class _OnHoverAnimatedState extends AnimatedState<OnHoverAnimated> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return AspectRatio(
-      aspectRatio: 2,
-      child: MouseRegion(
-        onEnter: onEnter,
-        onExit: onExit,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(size.height * .005),
+    return Center(
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: MouseRegion(
+          onEnter: onEnter,
+          onExit: onExit,
           child: _VisualTextsAnimation(
             buttonText: widget.buttonText,
             bottomText: widget.bottomText,
@@ -112,70 +109,81 @@ class _VisualTextsAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      fit: StackFit.expand,
-      children: [
-        RepaintBoundary(
-          child: AnimatedBuilder(
-            animation: scaleImageAnimation,
-            builder: (context, child) {
-              return Transform(
-                transform: Matrix4(
-                  scaleImageAnimation.value, 0, 0, 0, //
-                  0, scaleImageAnimation.value, 0, 0,
-                  0, 0, 1, 0,
-                  0, 0, 0, 1,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(color: Colors.black, blurRadius: 4, spreadRadius: 1),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Stack(
+          alignment: Alignment.center,
+          fit: StackFit.expand,
+          children: [
+            RepaintBoundary(
+              child: AnimatedBuilder(
+                animation: scaleImageAnimation,
+                builder: (context, child) {
+                  return Transform(
+                    transform: Matrix4(
+                      scaleImageAnimation.value, 0, 0, 0, //
+                      0, scaleImageAnimation.value, 0, 0,
+                      0, 0, 1, 0,
+                      0, 0, 0, 1,
+                    ),
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      asset,
+                      fit: BoxFit.cover,
+                      alignment: imageAlignmentWhenCover,
+                    ),
+                  );
+                },
+              ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 200,
+                height: 70,
+                child: AnimatedBuilder(
+                  animation: txtFadeAnimation,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: txtFadeAnimation.value,
+                      child: child!,
+                    );
+                  },
+                  child: _CenteredButton(
+                    bgColor: bgColor,
+                    buttonText: buttonText,
+                    txtColor: txtColor,
+                    url: url,
+                  ),
                 ),
-                alignment: Alignment.center,
-                child: Image.asset(
-                  asset,
-                  fit: BoxFit.cover,
-                  alignment: imageAlignmentWhenCover,
-                ),
-              );
-            },
-          ),
-        ),
-        Center(
-          child: SizedBox(
-            width: 200,
-            height: 70,
-            child: AnimatedBuilder(
-              animation: txtFadeAnimation,
+              ),
+            ),
+            AnimatedBuilder(
+              animation: txtTranslateAnimation,
               builder: (context, child) {
                 return Opacity(
                   opacity: txtFadeAnimation.value,
-                  child: child!,
+                  child: Transform.translate(
+                    offset: Offset(0, 30 - (30 * txtTranslateAnimation.value)),
+                    child: child!,
+                  ),
                 );
               },
-              child: _CenteredButton(
+              child: _BottomText(
                 bgColor: bgColor,
-                buttonText: buttonText,
+                bottomText: bottomText,
                 txtColor: txtColor,
-                url: url,
               ),
             ),
-          ),
+          ],
         ),
-        AnimatedBuilder(
-          animation: txtTranslateAnimation,
-          builder: (context, child) {
-            return Opacity(
-              opacity: txtFadeAnimation.value,
-              child: Transform.translate(
-                offset: Offset(0, 30 - (30 * txtTranslateAnimation.value)),
-                child: child!,
-              ),
-            );
-          },
-          child: _BottomText(
-            bgColor: bgColor,
-            bottomText: bottomText,
-            txtColor: txtColor,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

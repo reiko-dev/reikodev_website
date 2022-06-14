@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-//Color Pallete from Eble
-// --primary: #202020;
-// --primary-medium: #2C2C2C;
-// --secondary: #E89E4A;
-// --secondary-medium: #D98C40;
-// --secondary-dark: #BD6629;
-// --bg-light: #F2F2F2;
-// --bg-medium: #DED4C9;
-// --white: #fff;
-// --black: #000;
-// --alert-error: #ff2929;
-// --alert-success: #00b350;
-
 final darkTheme = ThemeData(
     primarySwatch: Colors.orange,
     backgroundColor: const Color(0xFF151515),

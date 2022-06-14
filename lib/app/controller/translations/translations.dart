@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-const lifeIsShort = "Life is short, so come say hi";
+const lifeIsShort = "Life is short, so come say";
 const letsStarAJourney = "Let's start a journey";
-const reikoEmail = "reikodeveloper@gmail.com";
+const reikoEmail = "hi@reikodev.com";
 const scrollToDiscover = "scroll to discover";
 const top = "TOP";
 const copyrightsTxt = "© 2022 Reiko. All rights reserved.";

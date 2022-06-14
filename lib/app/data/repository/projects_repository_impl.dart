@@ -19,35 +19,35 @@ class ProjectsRepositoryWebImpl extends ProjectsRepository {
 
   @override
   Future<List<Project>> getAllProjects() async {
-    return [
-      const Project(
+    return const [
+      Project(
         id: "0",
         name: "Memory Game",
-        imageURL: "assets/images/projects/memory_game.png",
+        imageURL: "assets/images/projects/memorygame.jpg",
         responsabilities: "Developer/Designer",
         siteURL:
             "https://play.google.com/store/apps/details?id=com.reiko.memorygame",
       ),
-      const Project(
-        id: "1",
+      Project(
+        id: "2",
+        name: "General Designs",
+        imageURL: "assets/images/projects/generalDesign.jpg",
+        responsabilities: "Developer/Designer",
+        siteURL: "https://general-design.web.app/",
+      ),
+      Project(
+        id: "2",
+        name: "Content creator",
+        imageURL: "assets/images/projects/youtube.jpg",
+        responsabilities: "Designer/Artist/Scripter",
+        siteURL: "https://www.youtube.com/channel/UC5COqoQbE51V4S9vWPBopNw",
+      ),
+      Project(
+        id: "3",
         name: "DFT Painter",
         imageURL: "assets/images/projects/dft.gif",
         responsabilities: "Developer/Designer/Vacation",
         siteURL: "https://dft-painter.web.app/",
-      ),
-      const Project(
-        id: "2",
-        name: "Reiko Website",
-        imageURL: "assets/images/projects/website.png",
-        responsabilities: "Developer/Designer",
-        siteURL: "https://reiko-website.web.app/",
-      ),
-      const Project(
-        id: "3",
-        name: "Content creator",
-        imageURL: "assets/images/projects/youtube.png",
-        responsabilities: "Designer/Artist/Scripter",
-        siteURL: "https://www.youtube.com/channel/UC5COqoQbE51V4S9vWPBopNw",
       ),
     ];
   }

@@ -56,11 +56,11 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
             const Expanded(child: SizedBox.shrink()),
             Padding(
               padding: EdgeInsets.only(bottom: size.height * .05),
-              child: SizedBox(
-                width: size.width,
-                height: size.height * .11,
-                child: isVerySmallDesign
-                    ? Column(
+              child: isVerySmallDesign
+                  ? SizedBox(
+                      width: size.width,
+                      height: size.height * .35,
+                      child: Column(
                         children: [
                           const Align(
                             alignment: Alignment.bottomRight,
@@ -136,8 +136,11 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                             ),
                           ),
                         ],
-                      )
-                    : Row(
+                      ))
+                  : SizedBox(
+                      width: size.width,
+                      height: size.height * .15,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -217,7 +220,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                           ),
                         ],
                       ),
-              ),
+                    ),
             ),
           ],
         ),

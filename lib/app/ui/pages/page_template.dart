@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:reikodev_website/app/ui/pages/background/background_page.dart';
 import 'package:reikodev_website/app/ui/pages/home/widgets/widgets.dart';
 import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
+import 'package:reikodev_website/app/ui/widgets/goodbye_section.dart';
 import 'package:reikodev_website/app/ui/widgets/title_widget.dart';
 import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
