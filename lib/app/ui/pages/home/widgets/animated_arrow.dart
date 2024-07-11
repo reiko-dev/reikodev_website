@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AnimatedArrow extends StatefulWidget {
   const AnimatedArrow({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AnimatedArrow> createState() => _AnimatedArrowState();
@@ -53,7 +53,7 @@ class _AnimatedArrowState extends State<AnimatedArrow>
         },
         child: Icon(
           Icons.arrow_downward_sharp,
-          color: Theme.of(context).textTheme.headline3!.color,
+          color: Theme.of(context).textTheme.displaySmall!.color,
         ),
       ),
     );

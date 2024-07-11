@@ -5,7 +5,7 @@ import 'package:reikodev_website/app/ui/pages/page_template.dart';
 import 'package:reikodev_website/app/ui/utils/extensions.dart';
 
 class UnknownPage extends StatelessWidget {
-  const UnknownPage({Key? key, this.state}) : super(key: key);
+  const UnknownPage({super.key, this.state});
 
   final GoRouterState? state;
 
@@ -18,9 +18,9 @@ class UnknownPage extends StatelessWidget {
         child: SizedBox(
           height: size.height * .8,
           width: size.width * .7,
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Spacer(flex: 3),
               Expanded(
                 flex: 6,
@@ -35,7 +35,7 @@ class UnknownPage extends StatelessWidget {
 }
 
 class Error404Widget extends StatelessWidget {
-  const Error404Widget({Key? key}) : super(key: key);
+  const Error404Widget({super.key});
 
   @override
   Widget build(BuildContext context) {

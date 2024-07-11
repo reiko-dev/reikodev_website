@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reikodev_website/app/controller/translations/translations.dart';
 import 'package:reikodev_website/app/routes/routes.dart';
+import 'package:reikodev_website/app/ui/extensions.dart';
 import 'package:reikodev_website/app/ui/theme.dart';
-import 'package:reikodev_website/app/ui/utils/menu_controller.dart';
+import 'package:reikodev_website/app/ui/utils/menu_controller.dart' as mc;
 import 'package:reikodev_website/app/ui/widgets/animated_state.dart';
 import 'package:reikodev_website/app/ui/widgets/hover_bottom_animation.dart';
 
 class MenuElement extends StatefulWidget {
-  const MenuElement({Key? key}) : super(key: key);
+  const MenuElement({super.key});
 
   @override
   State<MenuElement> createState() => _MenuElementState();
@@ -31,7 +32,7 @@ class _MenuElementState extends AnimatedState<MenuElement> {
   }
 
   void onTap(String nextRouteName) {
-    MenuController.i.isOpen.value = false;
+    mc.MenuController.i.isOpen.value = false;
     controller.reverse(from: 1);
     if (currentRouteName != nextRouteName) {
       context.goNamed(nextRouteName);
@@ -45,11 +46,11 @@ class _MenuElementState extends AnimatedState<MenuElement> {
     final size = MediaQuery.of(context).size;
     final style = Theme.of(context)
         .textTheme
-        .headline1!
+        .displayLarge!
         .copyWith(fontSize: size.width * .1);
 
     return Obx(() {
-      if (!MenuController.i.isOpen.value || size.width > 720) {
+      if (!mc.MenuController.i.isOpen.value || size.width > 720) {
         controller.reverse();
       } else {
         controller.forward();

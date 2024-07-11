@@ -87,7 +87,7 @@ class _BackgroundPageState extends State<BackgroundPage>
     return RepaintBoundary(
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: ValueListenableBuilder<double>(
           valueListenable: _speedValue,
@@ -103,9 +103,9 @@ class _BackgroundPageState extends State<BackgroundPage>
 class BGAnimator extends InheritedWidget {
   // ignore: prefer_const_constructors_in_immutables
   BGAnimator({
-    Key? key,
-    required Widget child,
-  }) : super(key: key, child: child);
+    super.key,
+    required super.child,
+  });
 
   final bgAnimatorKey = BackgroundPage.gkey;
   static BGAnimator? of(BuildContext context) {

@@ -98,7 +98,7 @@ class _ProfileSectionState extends AnimatedState<ProfileSection> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final style = Theme.of(context).textTheme.headline1!.copyWith(
+    final style = Theme.of(context).textTheme.displayLarge!.copyWith(
           fontSize: 200,
         );
 
@@ -132,7 +132,7 @@ class _ProfileSectionState extends AnimatedState<ProfileSection> {
                           child: AutoSizeText.rich(
                             textKey: textKey,
                             TextSpan(
-                              text: homeIntro1 + " ",
+                              text: "$homeIntro1 ",
                               children: [
                                 TextSpan(
                                   text: reikoVitorLucas,
@@ -140,7 +140,7 @@ class _ProfileSectionState extends AnimatedState<ProfileSection> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 TextSpan(
-                                  text: ", " + homeIntro2,
+                                  text: ", $homeIntro2",
                                   style: style.copyWith(
                                     color: style.color!.withOpacity(.35),
                                   ),
@@ -189,12 +189,11 @@ class _ProfileSectionState extends AnimatedState<ProfileSection> {
 class ProfileImageFader extends StatelessWidget {
   final String profileImage = "assets/images/profile.jpg";
 
-  ProfileImageFader({Key? key, required AnimationController controller})
+  ProfileImageFader({super.key, required AnimationController controller})
       : fadeAnimation = Tween<double>(
           begin: 0,
           end: 1,
-        ).animate(CurvedAnimation(parent: controller, curve: Curves.ease)),
-        super(key: key);
+        ).animate(CurvedAnimation(parent: controller, curve: Curves.ease));
 
   final Animation<double> fadeAnimation;
 
@@ -214,7 +213,7 @@ class ProfileImageFader extends StatelessWidget {
 }
 
 class _GetInTouchButton extends StatelessWidget {
-  _GetInTouchButton({Key? key, required AnimationController controller})
+  _GetInTouchButton({required AnimationController controller})
       : opacity = Tween<double>(begin: 0, end: 1).animate(
           CurvedAnimation(
             parent: controller,
@@ -226,15 +225,14 @@ class _GetInTouchButton extends StatelessWidget {
             parent: controller,
             curve: const Interval(.6, 1, curve: Curves.bounceOut),
           ),
-        ),
-        super(key: key);
+        );
 
   final Animation<double> opacity;
   final Animation<double> scale;
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.headline1;
+    final style = Theme.of(context).textTheme.displayLarge;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -321,7 +319,7 @@ class RevealingTextAnimation extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(context) {
-    return _RevealingTextRender()
+    return RevealingTextRender()
           ..totalRows = totalRows ?? 0
           ..animValue = animValue
           ..textSize = textSize
@@ -331,7 +329,7 @@ class RevealingTextAnimation extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(
-      BuildContext context, covariant _RevealingTextRender renderObject) {
+      BuildContext context, covariant RevealingTextRender renderObject) {
     final render = renderObject;
     render
           ..totalRows = totalRows ?? 0
@@ -344,8 +342,8 @@ class RevealingTextAnimation extends SingleChildRenderObjectWidget {
   }
 }
 
-class _RevealingTextRender extends RenderProxyBox {
-  _RevealingTextRender();
+class RevealingTextRender extends RenderProxyBox {
+  RevealingTextRender();
   int _totalRows = 0;
 
   double _animValue = 0;

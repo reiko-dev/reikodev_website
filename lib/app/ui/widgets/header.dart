@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reikodev_website/app/controller/link_service.dart';
 import 'package:reikodev_website/app/routes/routes.dart';
+import 'package:reikodev_website/app/ui/extensions.dart';
 
 import 'package:reikodev_website/app/ui/utils/constants.dart';
 import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
@@ -13,8 +14,8 @@ import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
 class Header extends StatefulWidget {
   const Header({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Header> createState() => _HeaderState();
@@ -92,7 +93,7 @@ class _HeaderState extends AnimatedState<Header> {
                           size.width < 720 ? "REIKO" : "Code By REIKO",
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                         size.width <= 720
@@ -112,9 +113,7 @@ class _HeaderState extends AnimatedState<Header> {
 }
 
 class _MenuItens extends StatelessWidget {
-  const _MenuItens({
-    Key? key,
-  }) : super(key: key);
+  const _MenuItens();
 
   void toRoute({
     required Routes newRoute,
@@ -131,7 +130,7 @@ class _MenuItens extends StatelessWidget {
     final location = GoRouter.of(context).location;
 
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.headline5!,
+      style: Theme.of(context).textTheme.headlineSmall!,
       child: SizedBox(
         width: 260,
         child: Row(

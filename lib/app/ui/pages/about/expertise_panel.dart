@@ -30,7 +30,7 @@ class ExpertisePanelItem extends StatelessWidget {
                           title.toUpperCase(),
                           maxLines: 1,
                           style:
-                              Theme.of(context).textTheme.headline1!.copyWith(
+                              Theme.of(context).textTheme.displayLarge!.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -41,7 +41,7 @@ class ExpertisePanelItem extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: bc.maxWidth * .02),
                       child: DefaultTextStyle(
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -103,7 +103,7 @@ class ExpertisePanelItem extends StatelessWidget {
                         title.toUpperCase(),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -115,7 +115,7 @@ class ExpertisePanelItem extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: bc.maxWidth * .02),
                       child: DefaultTextStyle(
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

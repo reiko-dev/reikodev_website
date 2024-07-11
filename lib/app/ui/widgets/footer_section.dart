@@ -8,7 +8,7 @@ import 'package:reikodev_website/app/controller/link_service.dart';
 import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
 class FooterSection extends StatelessWidget {
-  const FooterSection({Key? key}) : super(key: key);
+  const FooterSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +21,16 @@ class FooterSection extends StatelessWidget {
       const _LegalWidgets(),
     ];
 
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
-    final isMobile = _size.width < 720;
+    final isMobile = size.width < 720;
     late double height;
     if (isMobile) {
       height = 280;
     } else {
-      height = _size.height * .2 < 170 ? 170 : _size.height * .2;
+      height = size.height * .2 < 170 ? 170 : size.height * .2;
     }
-    final width = _size.width;
+    final width = size.width;
 
     return Stack(
       children: [
@@ -83,9 +83,7 @@ class FooterSection extends StatelessWidget {
 }
 
 class _LegalWidgets extends StatelessWidget {
-  const _LegalWidgets({
-    Key? key,
-  }) : super(key: key);
+  const _LegalWidgets();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +95,7 @@ class _LegalWidgets extends StatelessWidget {
           children: [
             CustomSelectableText(
               copyrightsTxt,
-              style: Theme.of(context).textTheme.subtitle1!,
+              style: Theme.of(context).textTheme.titleMedium!,
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(
@@ -111,7 +109,7 @@ class _LegalWidgets extends StatelessWidget {
                     uri: LinkService.getUri(path: "terms-and-conditions"),
                     child: HoverBottomAnimation(
                       text: "Terms & Conditions",
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                   const VerticalDivider(),
@@ -119,7 +117,7 @@ class _LegalWidgets extends StatelessWidget {
                     uri: LinkService.getUri(path: "privacy-policy"),
                     child: HoverBottomAnimation(
                       text: "Privacy Policy",
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ],
@@ -133,7 +131,7 @@ class _LegalWidgets extends StatelessWidget {
 }
 
 class _CodeByReiko extends StatelessWidget {
-  const _CodeByReiko({Key? key}) : super(key: key);
+  const _CodeByReiko();
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +145,7 @@ class _CodeByReiko extends StatelessWidget {
             codeByReiko.toUpperCase(),
             textAlign: TextAlign.center,
             maxLines: 1,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
           ),
@@ -159,8 +157,8 @@ class _CodeByReiko extends StatelessWidget {
 
 class AnimatedSocialMedia extends StatefulWidget {
   const AnimatedSocialMedia({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AnimatedSocialMedia> createState() => _AnimatedSocialMediaState();

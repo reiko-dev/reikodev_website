@@ -8,8 +8,8 @@ import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
 
 class ScrollToDiscoverWidget extends StatefulWidget {
   const ScrollToDiscoverWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   createState() => _ScrollToDiscoverWidgetState();

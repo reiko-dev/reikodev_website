@@ -41,19 +41,19 @@ class _TimeLineItemState extends AnimatedState<TimeLineItem> {
 
     final textTheme = Theme.of(context).textTheme;
 
-    final dateStyle = textTheme.headline1!.copyWith(
+    final dateStyle = textTheme.displayLarge!.copyWith(
       fontWeight: FontWeight.bold,
       color: greyColor,
     );
 
-    final h2Style = textTheme.headline3!.copyWith(
+    final h2Style = textTheme.displaySmall!.copyWith(
       fontWeight: FontWeight.bold,
       color: greyColor,
     );
-    final h3Style = textTheme.headline4!.copyWith(
+    final h3Style = textTheme.headlineMedium!.copyWith(
       color: greyColor,
     );
-    final bodyTextStyle = textTheme.headline5!.copyWith(
+    final bodyTextStyle = textTheme.headlineSmall!.copyWith(
       color: const Color(0xFFbebebe),
       fontSize: 15,
     );

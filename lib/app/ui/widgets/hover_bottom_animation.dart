@@ -4,12 +4,12 @@ import 'package:reikodev_website/app/ui/widgets/custom_link_widget.dart';
 
 class HoverBottomAnimation extends StatefulWidget {
   const HoverBottomAnimation({
-    Key? key,
+    super.key,
     required this.text,
     this.onTap,
     this.style,
     this.isLink = true,
-  }) : super(key: key);
+  });
 
   final TextStyle? style;
   final String text;
@@ -94,14 +94,14 @@ class _HoverBottomAnimationState extends State<HoverBottomAnimation>
                           widget.text,
                           key: gKey,
                           style: widget.style ??
-                              Theme.of(context).textTheme.headline3,
+                              Theme.of(context).textTheme.displaySmall,
                         ),
                       )
                     : Text(
                         widget.text,
                         key: gKey,
                         style: widget.style ??
-                            Theme.of(context).textTheme.headline3,
+                            Theme.of(context).textTheme.displaySmall,
                       ),
               ),
               CustomPaint(

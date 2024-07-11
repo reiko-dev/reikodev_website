@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -12,14 +11,13 @@ class StarField extends StatefulWidget {
   final double starSpeed;
   final int starCount;
 
-  const StarField({Key? key, this.starSpeed = 3, this.starCount = 150})
-      : super(key: key);
+  const StarField({super.key, this.starSpeed = 3, this.starCount = 150});
 
   @override
-  _StarFieldState createState() => _StarFieldState();
+  StarFieldState createState() => StarFieldState();
 }
 
-class _StarFieldState extends AnimatedState<StarField> {
+class StarFieldState extends AnimatedState<StarField> {
   List<Star>? _stars;
   final double _maxZ = 500;
   final double _minZ = 1;
@@ -61,7 +59,7 @@ class _StarFieldState extends AnimatedState<StarField> {
           : CustomPaint(
               painter: StarFieldPainter(
                 _stars!,
-                Theme.of(context).colorScheme.background,
+                Theme.of(context).colorScheme.surface,
                 glowImage: _glowImage!,
                 controller: controller,
               ),

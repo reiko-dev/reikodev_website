@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:reikodev_website/app/ui/widgets/animated_state.dart';
 
 class ProfileImage extends StatefulWidget {
-  const ProfileImage({Key? key}) : super(key: key);
+  const ProfileImage({super.key});
 
   @override
   State<ProfileImage> createState() => _ProfileImageState();
@@ -48,7 +48,7 @@ class _ProfileImageState extends AnimatedState<ProfileImage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final style = Theme.of(context).textTheme.headline1!.copyWith(
+    final style = Theme.of(context).textTheme.displayLarge!.copyWith(
           fontSize: 200,
           fontWeight: FontWeight.bold,
           color: Colors.white,

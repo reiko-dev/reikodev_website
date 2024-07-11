@@ -6,7 +6,7 @@ import 'package:reikodev_website/app/controller/experience_controller.dart';
 import 'package:reikodev_website/app/ui/pages/about/timeline_item.dart';
 
 class TimeLine extends StatelessWidget {
-  const TimeLine({Key? key, this.spaceBetweenItems = 40}) : super(key: key);
+  const TimeLine({super.key, this.spaceBetweenItems = 40});
 
   ///Vertical distance between TimeLineItems.
   final double spaceBetweenItems;

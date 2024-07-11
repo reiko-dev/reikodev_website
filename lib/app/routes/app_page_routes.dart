@@ -66,7 +66,7 @@ class Pages {
                 name: Routes.projectDetails.name,
                 path: ':id',
                 pageBuilder: (context, state) {
-                  final id = state.params["id"];
+                  final id = state.pathParameters["id"];
                   return _transitionPage(
                     context,
                     state,
@@ -90,7 +90,7 @@ class Pages {
 
   static CustomTransitionPage<void> _transitionPage(
       context, GoRouterState state, Widget child) {
-    if (state.location != Routes.bgAnimation.location) {
+    if (state.name != Routes.bgAnimation.name) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         isFirstBuild = false;
       });
