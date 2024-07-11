@@ -6,7 +6,7 @@ import 'package:reikodev_website/app/ui/pages/unknown_page.dart';
 
 final router = GoRouter(
   redirect: (_, state) {
-    if (Routes.isAValidLocation(state.name)) {
+    if (!Routes.isAValidLocation(state.name)) {
       return null;
     }
 
@@ -27,5 +27,4 @@ final router = GoRouter(
       child: UnknownPage(state: state),
     );
   },
-  errorBuilder: (context, state) => UnknownPage(state: state),
 );

@@ -136,37 +136,31 @@ class _MenuItens extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "home"),
-              child: HoverBottomAnimation(
-                text: "Home",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.home,
-                ),
+            HoverBottomAnimation(
+              text: "Home",
+              link: LinkService.getUri(path: Routes.home.location),
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.home,
               ),
             ),
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "work"),
-              child: HoverBottomAnimation(
-                text: "Work",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.projects,
-                ),
+            HoverBottomAnimation(
+              text: "Work",
+              link: LinkService.getUri(path: Routes.projects.location),
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.projects,
               ),
             ),
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "about"),
-              child: HoverBottomAnimation(
-                text: "About",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.about,
-                ),
+            HoverBottomAnimation(
+              link: LinkService.getUri(path: Routes.about.location),
+              text: "About",
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.about,
               ),
             ),
           ],

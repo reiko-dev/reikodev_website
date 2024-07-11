@@ -99,26 +99,22 @@ class _LegalWidgets extends StatelessWidget {
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(
-                maxHeight: 27,
+                maxHeight: 28,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  CustomLinkWidget(
-                    uri: LinkService.getUri(path: "terms-and-conditions"),
-                    child: HoverBottomAnimation(
-                      text: "Terms & Conditions",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                  HoverBottomAnimation(
+                    text: "Terms & Conditions",
+                    style: Theme.of(context).textTheme.titleMedium,
+                    link: LinkService.getUri(path: "/terms-and-conditions"),
                   ),
                   const VerticalDivider(),
-                  CustomLinkWidget(
-                    uri: LinkService.getUri(path: "privacy-policy"),
-                    child: HoverBottomAnimation(
-                      text: "Privacy Policy",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                  HoverBottomAnimation(
+                    text: "Privacy Policy",
+                    style: Theme.of(context).textTheme.titleMedium,
+                    link: LinkService.getUri(path: "/privacy-policy"),
                   ),
                 ],
               ),

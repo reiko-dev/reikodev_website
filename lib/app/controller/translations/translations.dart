@@ -29,10 +29,10 @@ const splashScreenText = "Reiko (Vitor Lucas)";
 
 const getInTouch = "Get in touch";
 const aboutText =
-    "As a self-taught i have the mindset of: \"I don't know how to do it yet, but i'll figure it out\". That's my superpower.\n\n"
+    "As a self-taught I have the mindset of: \"I don't know how to do it yet, but i'll figure it out\". That's my superpower.\n\n"
     //P2
     "Whener somebody asks me \"What's your job exactly?\",  the answer is simple: \"I do what is necessary to turn a vision into reality.\" "
-    "I search, i ask for help, i teach and learn, growing with every problem i face, this is how i'm built.\n\n"
+    "I search, ask for help, teach and learn, growing with every problem faced, this is how I'm built.\n\n"
     //P3
     "Since the first time I got my hands on a personal computer, at the age of 12 (i guess), I understood that the possibilities for creation "
     "are infinite, well the digital world had never been so big as today. Thus, I never concerned myself about the \"how\" of an idea, but "
@@ -78,7 +78,7 @@ class MyTranslations extends Translations {
           reikoVitorLucas: reikoVitorLucas,
           homeIntro1: "Olá mundo! Eu sou",
           homeIntro2:
-              "Analista de Sistemas de Informação e Flutter Developer. Eu ani criar coisas novas e experimentar novas tecnologias",
+              "Analista de Sistemas de Informação e Flutter Developer. Amo criar coisas novas e experimentar novas tecnologias",
         },
       };
 }

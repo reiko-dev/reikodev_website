@@ -150,7 +150,8 @@ class _PageTemplateState extends State<PageTemplate> {
                                   .textTheme
                                   .headlineSmall!
                                   .copyWith(
-                                    color: Theme.of(context).colorScheme.surface,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),

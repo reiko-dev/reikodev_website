@@ -127,7 +127,6 @@ class _ScrollToDiscoverWidgetState
                         padding: const EdgeInsets.only(right: 4),
                         child: HoverBottomAnimation(
                           text: scrollToDiscover.capitalizeFirst!,
-                          isLink: false,
                         ),
                       ),
                     ),

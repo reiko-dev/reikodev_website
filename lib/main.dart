@@ -65,6 +65,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             routeInformationParser: router.routeInformationParser,
             routerDelegate: router.routerDelegate,
+            routeInformationProvider: router.routeInformationProvider,
             theme: isDarkTheme ? darkTheme : lightTheme,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
@@ -78,7 +79,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             supportedLocales: const [
-              Locale('en', 'Us'),
+              Locale('en', 'US'),
               Locale('pt', ''),
             ],
           );
