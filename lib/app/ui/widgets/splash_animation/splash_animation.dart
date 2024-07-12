@@ -133,7 +133,7 @@ class _SplashAnimationState extends State<SplashAnimation>
               child: TransitionRenderWidget(
                 status: controller.status,
                 animValue: colorAnim1.value + colorAnim2.value,
-                backgroundColor: Theme.of(context).backgroundColor,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 color: Colors.white,
                 beginAngle: firstAnimationAngle,
                 endAngle: secondAnimationAngle,

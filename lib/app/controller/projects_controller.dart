@@ -9,8 +9,8 @@ class ProjectsController extends GetxController {
   final GetAllProjectsUsecase _getAllProjectsUsecase;
   static final ProjectsController i = Get.find();
 
-  ProjectsController(ProjectsRepository _repository)
-      : _getAllProjectsUsecase = GetAllProjectsUsecase(_repository);
+  ProjectsController(ProjectsRepository repository)
+      : _getAllProjectsUsecase = GetAllProjectsUsecase(repository);
 
   @override
   void onInit() {

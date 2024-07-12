@@ -140,7 +140,7 @@ class _PageTemplateState extends State<PageTemplate> {
                         angle: -pi / 2,
                         alignment: Alignment.topLeft,
                         child: Container(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.surface,
                           width: 120,
                           height: 40,
                           child: Center(
@@ -148,9 +148,10 @@ class _PageTemplateState extends State<PageTemplate> {
                               "Reiko - BR.2022",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5!
+                                  .headlineSmall!
                                   .copyWith(
-                                    color: Theme.of(context).backgroundColor,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),

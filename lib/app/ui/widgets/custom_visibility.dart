@@ -34,7 +34,7 @@ class CustomVisibility extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    final renderObject = _VisibilityRender();
+    final renderObject = VisibilityRender();
 
     updateRenderObject(context, renderObject);
 
@@ -49,14 +49,14 @@ class CustomVisibility extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(
-      BuildContext context, covariant _VisibilityRender renderObject) {
+      BuildContext context, covariant VisibilityRender renderObject) {
     renderObject
       ..onVisibilityChanged = onVisibilityChangedCall
       ..fullSize = MediaQuery.of(context).size;
   }
 }
 
-class _VisibilityRender extends RenderProxyBox {
+class VisibilityRender extends RenderProxyBox {
   double _percent = 0;
   late Size fullSize;
   late void Function(VisibilityDetails vd) onVisibilityChanged;

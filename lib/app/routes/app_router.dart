@@ -5,8 +5,8 @@ import 'package:reikodev_website/app/routes/routes.dart';
 import 'package:reikodev_website/app/ui/pages/unknown_page.dart';
 
 final router = GoRouter(
-  redirect: (state) {
-    if (Routes.isAValidLocation(state.location)) {
+  redirect: (_, state) {
+    if (!Routes.isAValidLocation(state.name)) {
       return null;
     }
 
@@ -14,9 +14,6 @@ final router = GoRouter(
   },
   initialLocation: Routes.home.location,
   routes: Pages.all,
-  navigatorBuilder: (context, state, pageWidget) {
-    return pageWidget;
-  },
   errorPageBuilder: (context, state) {
     return CustomTransitionPage<void>(
       key: state.pageKey,
@@ -30,6 +27,4 @@ final router = GoRouter(
       child: UnknownPage(state: state),
     );
   },
-  urlPathStrategy: UrlPathStrategy.path,
-  errorBuilder: (context, state) => UnknownPage(state: state),
 );

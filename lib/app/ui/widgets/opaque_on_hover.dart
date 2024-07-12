@@ -4,8 +4,8 @@ import 'package:reikodev_website/app/ui/widgets/animated_state.dart';
 
 class OpaqueOnHover extends StatefulWidget {
   const OpaqueOnHover({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<OpaqueOnHover> createState() => _OpaqueOnHoverState();
@@ -41,7 +41,7 @@ class _OpaqueOnHoverState extends AnimatedState<OpaqueOnHover> {
           BoxShadow(
             blurRadius: 120,
             spreadRadius: 10,
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).colorScheme.surface,
           )
         ],
         child: AnimatedBuilder(
@@ -52,7 +52,7 @@ class _OpaqueOnHoverState extends AnimatedState<OpaqueOnHover> {
                 colorBlendMode: BlendMode.color,
                 opacity: fadeAnimation,
                 color: Theme.of(context)
-                    .backgroundColor
+                    .colorScheme.surface
                     .withOpacity(.6 - (.6 * fadeAnimation.value)),
               );
             }),

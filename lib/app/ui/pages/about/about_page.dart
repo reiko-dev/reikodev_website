@@ -13,7 +13,7 @@ import 'package:reikodev_website/app/ui/pages/about/timeline.dart';
 import 'package:reikodev_website/app/ui/pages/page_template.dart';
 
 class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
+  const AboutPage({super.key});
 
   @override
   State<AboutPage> createState() => _AboutPageState();
@@ -46,8 +46,8 @@ class _AboutPageState extends State<AboutPage> {
             SizedBox(height: size.height * .15),
             if (isFlaggedDesign) ...[
               const FloatingFlagText(
-                child: _InitialText(),
                 text: "Mindset",
+                child: _InitialText(),
               ),
               SizedBox(height: size.height * .15),
               const FloatingFlagText(
@@ -76,20 +76,20 @@ class _AboutPageState extends State<AboutPage> {
 }
 
 class _InitialText extends StatelessWidget {
-  const _InitialText({Key? key}) : super(key: key);
+  const _InitialText();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
 
-    final titleStyle = textTheme.headline1!.copyWith(
+    final titleStyle = textTheme.displayLarge!.copyWith(
       color: const Color(0xFFD3D4C9),
       fontSize: 25,
       fontWeight: FontWeight.bold,
     );
 
-    final bodyTextStyle = textTheme.headline4!.copyWith(
+    final bodyTextStyle = textTheme.headlineMedium!.copyWith(
       color: const Color(0xFFD3D4C9),
     );
 
@@ -143,9 +143,10 @@ class _InitialText extends StatelessWidget {
                       aboutText,
                       textAlign: TextAlign.justify,
                       softWrap: true,
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: const Color.fromARGB(255, 211, 212, 201),
-                          ),
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                color: const Color.fromARGB(255, 211, 212, 201),
+                              ),
                     ),
                   ),
                 ],

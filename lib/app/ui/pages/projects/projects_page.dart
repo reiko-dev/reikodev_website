@@ -7,7 +7,7 @@ import 'package:reikodev_website/app/ui/widgets/on_hover_animated.dart';
 import 'package:reikodev_website/app/ui/widgets/title_widget.dart';
 
 class ProjectsPage extends StatefulWidget {
-  const ProjectsPage({Key? key}) : super(key: key);
+  const ProjectsPage({super.key});
 
   @override
   State<ProjectsPage> createState() => _ProjectsPageState();

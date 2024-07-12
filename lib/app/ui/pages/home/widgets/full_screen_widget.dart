@@ -16,22 +16,22 @@ class FullScreenWidget extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    final renderObject = _FullScreenWidgetRender();
+    final renderObject = FullScreenWidgetRender();
     updateRenderObject(context, renderObject);
     return renderObject;
   }
 
   @override
   void updateRenderObject(
-      BuildContext context, _FullScreenWidgetRender renderObject) {
+      BuildContext context, FullScreenWidgetRender renderObject) {
     renderObject
       ..maxSize = maxSize
       ..alignment = alignment;
   }
 }
 
-class _FullScreenWidgetRender extends RenderProxyBox {
-  _FullScreenWidgetRender();
+class FullScreenWidgetRender extends RenderProxyBox {
+  FullScreenWidgetRender();
   Size? _maxSize;
   Alignment? _alignment;
 

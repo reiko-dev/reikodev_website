@@ -4,7 +4,7 @@ import 'package:reikodev_website/app/ui/widgets/custom_link_widget.dart';
 
 class OnHoverIcon extends StatefulWidget {
   const OnHoverIcon({
-    Key? key,
+    super.key,
     required this.iconData,
     this.mouseCursor = SystemMouseCursors.click,
     this.onClick,
@@ -12,7 +12,7 @@ class OnHoverIcon extends StatefulWidget {
     this.withDivider = false,
     this.linkText = "",
     this.onHoverColor,
-  }) : super(key: key);
+  });
 
   final IconData iconData;
 

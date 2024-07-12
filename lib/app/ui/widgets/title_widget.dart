@@ -48,7 +48,7 @@ class TitleWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .headline1!
+                        .displayLarge!
                         .copyWith(fontSize: 200),
                   )
                 : ClipRect(
@@ -68,7 +68,7 @@ class TitleWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
-                            .headline1!
+                            .displayLarge!
                             .copyWith(fontSize: 200),
                       ),
                     ),

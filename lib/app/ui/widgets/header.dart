@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reikodev_website/app/controller/link_service.dart';
+import 'package:reikodev_website/app/index.dart';
 import 'package:reikodev_website/app/routes/routes.dart';
+import 'package:reikodev_website/app/ui/extensions.dart';
 
 import 'package:reikodev_website/app/ui/utils/constants.dart';
 import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
@@ -13,8 +15,8 @@ import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
 class Header extends StatefulWidget {
   const Header({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Header> createState() => _HeaderState();
@@ -88,12 +90,38 @@ class _HeaderState extends AnimatedState<Header> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          size.width < 720 ? "REIKO" : "Code By REIKO",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2!
-                              .copyWith(fontWeight: FontWeight.bold),
+                        GestureDetector(
+                          onLongPress: () async {
+                            final messenger = ScaffoldMessenger.of(context);
+                            final service = Get.find<AppVersionService>();
+
+                            final snackBar = SnackBar(
+                                content: Align(
+                              alignment: const Alignment(0, -.2),
+                              child: Card(
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text('Version:'),
+                                      const SizedBox(height: 12),
+                                      Text(service.version)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ));
+                            messenger.showSnackBar(snackBar);
+                          },
+                          child: Text(
+                            size.width < 720 ? "REIKO" : "Code By REIKO",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         size.width <= 720
                             ? const HamburgerMenu()
@@ -112,9 +140,7 @@ class _HeaderState extends AnimatedState<Header> {
 }
 
 class _MenuItens extends StatelessWidget {
-  const _MenuItens({
-    Key? key,
-  }) : super(key: key);
+  const _MenuItens();
 
   void toRoute({
     required Routes newRoute,
@@ -131,43 +157,37 @@ class _MenuItens extends StatelessWidget {
     final location = GoRouter.of(context).location;
 
     return DefaultTextStyle(
-      style: Theme.of(context).textTheme.headline5!,
+      style: Theme.of(context).textTheme.headlineSmall!,
       child: SizedBox(
         width: 260,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "home"),
-              child: HoverBottomAnimation(
-                text: "Home",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.home,
-                ),
+            HoverBottomAnimation(
+              text: "Home",
+              link: LinkService.getUri(path: Routes.home.location),
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.home,
               ),
             ),
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "work"),
-              child: HoverBottomAnimation(
-                text: "Work",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.projects,
-                ),
+            HoverBottomAnimation(
+              text: "Work",
+              link: LinkService.getUri(path: Routes.projects.location),
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.projects,
               ),
             ),
-            CustomLinkWidget(
-              uri: LinkService.getUri(path: "about"),
-              child: HoverBottomAnimation(
-                text: "About",
-                onTap: () => toRoute(
-                  context: context,
-                  currentLocation: location,
-                  newRoute: Routes.about,
-                ),
+            HoverBottomAnimation(
+              link: LinkService.getUri(path: Routes.about.location),
+              text: "About",
+              onTap: () => toRoute(
+                context: context,
+                currentLocation: location,
+                newRoute: Routes.about,
               ),
             ),
           ],

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:reikodev_website/app/controller/link_service.dart';
 import 'package:reikodev_website/app/ui/widgets/custom_link_widget.dart';
 
 class HoverBottomAnimation extends StatefulWidget {
   const HoverBottomAnimation({
-    Key? key,
+    super.key,
     required this.text,
     this.onTap,
     this.style,
-    this.isLink = true,
-  }) : super(key: key);
+    this.link,
+  });
 
   final TextStyle? style;
   final String text;
   final void Function()? onTap;
-  final bool isLink;
+  final Uri? link;
 
   @override
   State<HoverBottomAnimation> createState() => _HoverBottomAnimationState();
@@ -85,23 +84,21 @@ class _HoverBottomAnimationState extends State<HoverBottomAnimation>
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 2.0),
-                child: widget.isLink
+                child: widget.link != null
                     ? CustomLinkWidget(
-                        uri: LinkService.getUri(
-                          url: widget.text,
-                        ),
+                        uri: widget.link!,
                         child: Text(
                           widget.text,
                           key: gKey,
                           style: widget.style ??
-                              Theme.of(context).textTheme.headline3,
+                              Theme.of(context).textTheme.displaySmall,
                         ),
                       )
                     : Text(
                         widget.text,
                         key: gKey,
                         style: widget.style ??
-                            Theme.of(context).textTheme.headline3,
+                            Theme.of(context).textTheme.displaySmall,
                       ),
               ),
               CustomPaint(

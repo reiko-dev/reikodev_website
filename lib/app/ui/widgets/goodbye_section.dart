@@ -7,7 +7,7 @@ import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
 import 'package:reikodev_website/app/ui/widgets/widgets.dart';
 
 class GoodbyeSection extends StatefulWidget {
-  const GoodbyeSection({Key? key}) : super(key: key);
+  const GoodbyeSection({super.key});
 
   @override
   State<GoodbyeSection> createState() => _GoodbyeSectionState();
@@ -91,7 +91,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                                             textAlign: TextAlign.left,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline3!
+                                                .displaySmall!
                                                 .copyWith(
                                                   color: Theme.of(context)
                                                       .disabledColor,
@@ -118,7 +118,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                                                 recognizer: _onTapRecognizer,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2!
+                                                    .displayMedium!
                                                     .copyWith(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -167,7 +167,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                                             textAlign: TextAlign.left,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline3!
+                                                .displaySmall!
                                                 .copyWith(
                                                   color: Theme.of(context)
                                                       .disabledColor,
@@ -194,7 +194,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
                                                 recognizer: _onTapRecognizer,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2!
+                                                    .displayMedium!
                                                     .copyWith(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -230,9 +230,7 @@ class _GoodbyeSectionState extends State<GoodbyeSection> {
 }
 
 class _ScrollToTopWidget extends StatelessWidget {
-  const _ScrollToTopWidget({
-    Key? key,
-  }) : super(key: key);
+  const _ScrollToTopWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -244,8 +242,8 @@ class _ScrollToTopWidget extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
           focusColor: Colors.white.withOpacity(.2),
-          overlayColor: MaterialStateProperty.resolveWith((state) {
-            return Theme.of(context).colorScheme.background.withOpacity(.2);
+          overlayColor: WidgetStateProperty.resolveWith((state) {
+            return Theme.of(context).colorScheme.surface.withOpacity(.2);
           }),
           onTap: () {
             ScrollDataController.i.animateTo(0);
@@ -257,12 +255,12 @@ class _ScrollToTopWidget extends StatelessWidget {
                 top.toUpperCase(),
                 style: Theme.of(context)
                     .textTheme
-                    .headline3!
+                    .displaySmall!
                     .copyWith(fontWeight: FontWeight.bold),
               ),
               Icon(
                 Icons.arrow_upward_outlined,
-                color: Theme.of(context).textTheme.headline3!.color,
+                color: Theme.of(context).textTheme.displaySmall!.color,
               ),
             ],
           ),

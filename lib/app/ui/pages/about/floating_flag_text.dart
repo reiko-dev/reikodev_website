@@ -63,7 +63,7 @@ class _FloatingFlagTextState extends AnimatedState<FloatingFlagText> {
                   },
                   child: Text(
                     widget.text.toUpperCase(),
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
                           color: Colors.white.withOpacity(.1),
                           fontWeight: FontWeight.bold,
                         ),

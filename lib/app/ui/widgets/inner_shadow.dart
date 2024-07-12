@@ -5,31 +5,31 @@ import 'package:flutter/rendering.dart';
 
 class InnerShadow extends SingleChildRenderObjectWidget {
   const InnerShadow({
-    Key? key,
+    super.key,
     this.shadows = const <Shadow>[],
-    Widget? child,
+    super.child,
     this.radius = Radius.zero,
-  }) : super(key: key, child: child);
+  });
 
   final List<Shadow> shadows;
   final Radius radius;
   @override
   RenderObject createRenderObject(BuildContext context) {
-    final renderObject = _RenderInnerShadow();
+    final renderObject = RenderInnerShadow();
     updateRenderObject(context, renderObject);
     return renderObject;
   }
 
   @override
   void updateRenderObject(
-      BuildContext context, _RenderInnerShadow renderObject) {
+      BuildContext context, RenderInnerShadow renderObject) {
     renderObject
       ..shadows = shadows
       ..radius = radius;
   }
 }
 
-class _RenderInnerShadow extends RenderProxyBox {
+class RenderInnerShadow extends RenderProxyBox {
   late List<Shadow> shadows;
   late Radius radius;
 

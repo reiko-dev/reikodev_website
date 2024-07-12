@@ -20,7 +20,9 @@ enum Routes {
   final String name;
   final String location;
 
-  static isAValidLocation(String location) {
+  static bool isAValidLocation(String? location) {
+    if (location == null) return false;
+
     if (_isProjectsRoute(location)) {
       return true;
     }

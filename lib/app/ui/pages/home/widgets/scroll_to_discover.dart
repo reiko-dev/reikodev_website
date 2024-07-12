@@ -8,8 +8,8 @@ import 'package:reikodev_website/app/ui/utils/scroll_data_controller.dart';
 
 class ScrollToDiscoverWidget extends StatefulWidget {
   const ScrollToDiscoverWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   createState() => _ScrollToDiscoverWidgetState();
@@ -127,7 +127,6 @@ class _ScrollToDiscoverWidgetState
                         padding: const EdgeInsets.only(right: 4),
                         child: HoverBottomAnimation(
                           text: scrollToDiscover.capitalizeFirst!,
-                          isLink: false,
                         ),
                       ),
                     ),

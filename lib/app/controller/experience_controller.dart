@@ -9,8 +9,8 @@ class ExperienceController extends GetxController {
   final GetAllExperiencesUsecase _getAllExperienceUsecase;
   static final ExperienceController i = Get.find();
 
-  ExperienceController(ExperienceRepository _repository)
-      : _getAllExperienceUsecase = GetAllExperiencesUsecase(_repository);
+  ExperienceController(ExperienceRepository repository)
+      : _getAllExperienceUsecase = GetAllExperiencesUsecase(repository);
 
   @override
   void onInit() {

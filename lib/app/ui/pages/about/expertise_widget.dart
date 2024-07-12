@@ -4,7 +4,7 @@ import 'package:reikodev_website/app/controller/expertises_controller.dart';
 import 'package:reikodev_website/app/ui/pages/about/expertise_panel.dart';
 
 class ExpertiseWidget extends StatelessWidget {
-  const ExpertiseWidget({Key? key}) : super(key: key);
+  const ExpertiseWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -38,14 +38,14 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
               children: [
                 Text(
                   "DETAIL PAGE",
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 Text(
                   project != null
                       ? project.toString()
                       : "Could not find the project with id ${widget.id} ",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
               ],
             ),

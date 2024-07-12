@@ -9,8 +9,8 @@ class ExpertisesController extends GetxController {
   final GetAllExpertisesUsecase _getAllExpertisesUsecase;
   static final ExpertisesController i = Get.find();
 
-  ExpertisesController(ExpertisesRepository _repository)
-      : _getAllExpertisesUsecase = GetAllExpertisesUsecase(_repository);
+  ExpertisesController(ExpertisesRepository repository)
+      : _getAllExpertisesUsecase = GetAllExpertisesUsecase(repository);
 
   @override
   void onInit() {

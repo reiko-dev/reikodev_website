@@ -12,9 +12,9 @@ import 'package:reikodev_website/app/ui/utils/mouse_preventer/mouse_click_preven
 class CustomSelectableText extends StatefulWidget {
   const CustomSelectableText(
     this.text, {
-    Key? key,
+    super.key,
     required this.style,
-  }) : super(key: key);
+  });
 
   final String text;
 
@@ -159,7 +159,7 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
         caretOffset.dx - 1,
         caretOffset.dy,
         2,
-        caretHeight ?? 0,
+        caretHeight,
       );
     });
   }
@@ -230,8 +230,8 @@ class _CustomSelectableTextState extends State<CustomSelectableText> {
       context: context,
       items: [
         const PopupMenuItem(
-          child: Text('Copy'),
           value: 1,
+          child: Text('Copy'),
         ),
       ],
       position: RelativeRect.fromSize(

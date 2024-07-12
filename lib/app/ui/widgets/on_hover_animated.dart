@@ -5,12 +5,12 @@ import 'package:reikodev_website/app/ui/widgets/custom_link_widget.dart';
 
 class OnHoverAnimated extends StatefulWidget {
   const OnHoverAnimated({
-    Key? key,
+    super.key,
     required this.bottomText,
     required this.buttonText,
     required this.url,
     required this.asset,
-  }) : super(key: key);
+  });
 
   final String buttonText;
   final String bottomText;
@@ -62,7 +62,6 @@ class _OnHoverAnimatedState extends AnimatedState<OnHoverAnimated> {
 
 class _VisualTextsAnimation extends StatelessWidget {
   _VisualTextsAnimation({
-    Key? key,
     required this.buttonText,
     required this.bottomText,
     required AnimationController controller,
@@ -87,8 +86,7 @@ class _VisualTextsAnimation extends StatelessWidget {
           CurvedAnimation(
               parent: controller,
               curve: const Interval(0, 1, curve: Curves.easeInCubic)),
-        ),
-        super(key: key);
+        );
 
   final Animation<double> txtFadeAnimation;
   final Animation<double> txtTranslateAnimation;
@@ -190,12 +188,11 @@ class _VisualTextsAnimation extends StatelessWidget {
 
 class _CenteredButton extends StatelessWidget {
   const _CenteredButton({
-    Key? key,
     required this.bgColor,
     required this.buttonText,
     required this.txtColor,
     required this.url,
-  }) : super(key: key);
+  });
 
   final Color bgColor;
   final String buttonText;
@@ -230,7 +227,7 @@ class _CenteredButton extends StatelessWidget {
                       child: Text(
                         buttonText.toUpperCase(),
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.button!.copyWith(
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
                               color: txtColor,
@@ -255,11 +252,10 @@ class _CenteredButton extends StatelessWidget {
 
 class _BottomText extends StatelessWidget {
   const _BottomText({
-    Key? key,
     required this.bgColor,
     required this.bottomText,
     required this.txtColor,
-  }) : super(key: key);
+  });
 
   final Color bgColor;
   final String bottomText;
@@ -282,7 +278,7 @@ class _BottomText extends StatelessWidget {
               child: Text(
                 bottomText.toUpperCase(),
                 maxLines: 2,
-                style: Theme.of(context).textTheme.button!.copyWith(
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                       color: txtColor,
                     ),

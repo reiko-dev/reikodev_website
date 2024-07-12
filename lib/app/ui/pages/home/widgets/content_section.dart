@@ -54,10 +54,10 @@ class _ContentSectionState extends State<ContentSection> {
                   child: AutoSizeText(
                     projects.toUpperCase(),
                     textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.headline2!.copyWith(
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
                           fontSize: size.width * .1,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                   ),
                 ),
