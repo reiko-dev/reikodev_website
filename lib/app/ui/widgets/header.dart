@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reikodev_website/app/controller/link_service.dart';
+import 'package:reikodev_website/app/index.dart';
 import 'package:reikodev_website/app/routes/routes.dart';
 import 'package:reikodev_website/app/ui/extensions.dart';
 
@@ -89,12 +90,38 @@ class _HeaderState extends AnimatedState<Header> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          size.width < 720 ? "REIKO" : "Code By REIKO",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                        GestureDetector(
+                          onLongPress: () async {
+                            final messenger = ScaffoldMessenger.of(context);
+                            final service = Get.find<AppVersionService>();
+
+                            final snackBar = SnackBar(
+                                content: Align(
+                              alignment: const Alignment(0, -.2),
+                              child: Card(
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text('Version:'),
+                                      const SizedBox(height: 12),
+                                      Text(service.version)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ));
+                            messenger.showSnackBar(snackBar);
+                          },
+                          child: Text(
+                            size.width < 720 ? "REIKO" : "Code By REIKO",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         size.width <= 720
                             ? const HamburgerMenu()

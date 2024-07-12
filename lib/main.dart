@@ -5,6 +5,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:reikodev_website/app/controller/projects_controller.dart';
 import 'package:reikodev_website/app/data/repository/projects_repository_impl.dart';
+import 'package:reikodev_website/app/index.dart';
 import 'package:reikodev_website/app/routes/app_router.dart';
 import 'package:reikodev_website/app/ui/pages/background/background_page.dart';
 import 'package:reikodev_website/app/ui/theme.dart';
@@ -29,7 +30,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final a = Get.put(mc.MenuController());
   final c = Get.put(ScrollDataController());
-
   final hc = Get.lazyPut(
     () => ProjectsController(ProjectsRepositoryWebImpl()),
   );
@@ -49,9 +49,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
+
     VisibilityDetectorController.instance.updateInterval =
         const Duration(milliseconds: 35);
-    super.initState();
+
+    loadDependency();
+  }
+
+  void loadDependency() {
+    AppVersionServiceImplementation.instance().then((service) {
+      Get.put<AppVersionService>(service);
+    });
   }
 
   @override
